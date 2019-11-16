@@ -1,5 +1,7 @@
 {
   "name": "IonicTour",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

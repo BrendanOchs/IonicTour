@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ThemeSwitcherService } from '../theme-switcher.service';
+import { Flashlight } from '@ionic-native/flashlight/ngx';
 
 @Component({
   selector: 'app-tab3',
@@ -8,7 +9,7 @@ import { ThemeSwitcherService } from '../theme-switcher.service';
 })
 export class Tab3Page {
 
-  constructor(private ts: ThemeSwitcherService) {}
+  constructor(private ts: ThemeSwitcherService, private flash: Flashlight) {}
 
   changeTheme(theme: string, toggleValue: CustomEvent) {
     console.log('toggle value', toggleValue);
@@ -17,6 +18,14 @@ export class Tab3Page {
     } else {
       this.ts.setTheme('day');
     }
+  }
+
+  light() {
+    if (this.flash.isSwitchedOn()) {
+      this.flash.switchOff();
+      return;
+    }
+    this.flash.switchOn();
   }
 
 }

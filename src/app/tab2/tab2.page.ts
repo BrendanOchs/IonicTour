@@ -9,6 +9,10 @@ const { Geolocation } = Plugins;
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  zoom = 0;
+
+  lat = 51.673858;
+  lng = 7.815982;
 
   latitude: number;
   longitude: number;

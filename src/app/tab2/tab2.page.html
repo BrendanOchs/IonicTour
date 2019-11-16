@@ -8,6 +8,29 @@
 
 <ion-content>
     <ion-button (click)="getCurrentPosition()">Location</ion-button>
-    {{latitude}} {{longitude}}
-    A new change to test the build process again
+    <agm-map
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom"
+  [disableDefaultUI]="false"
+  [zoomControl]="false">
+
+  <!-- <agm-marker
+      [latitude]="m.lat"
+      [longitude]="m.lng">
+      
+    <agm-info-window>
+      <strong>InfoWindow content</strong>
+    </agm-info-window>
+    
+  </agm-marker> -->
+  
+  <!-- <agm-circle [latitude]="lat + 0.3" [longitude]="lng" 
+      [radius]="5000"
+      [fillColor]="'red'"
+      [circleDraggable]="true"
+      [editable]="true">
+  </agm-circle> -->
+
+</agm-map>
 </ion-content>
