@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ThemeSwitcherService } from '../theme-switcher.service';
 import { Flashlight } from '@ionic-native/flashlight/ngx';
+import { stat } from 'fs';
 
 @Component({
   selector: 'app-tab3',
@@ -20,12 +21,15 @@ export class Tab3Page {
     }
   }
 
-  light() {
-    if (this.flash.isSwitchedOn()) {
+  light(state: string) {
+    if (state === 'OFF') {
+      console.log('flash off');
       this.flash.switchOff();
       return;
     }
+    console.log('flash on');
     this.flash.switchOn();
+    console.log(this.flash.isSwitchedOn);
   }
 
 }
