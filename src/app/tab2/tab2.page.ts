@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AstronautRecord, AstronautService } from '../astronaut.service';
+import { Plugins } from '@capacitor/core';
+
+const { Geolocation } = Plugins;
 
 @Component({
   selector: 'app-tab2',
@@ -9,9 +10,13 @@ import { AstronautRecord, AstronautService } from '../astronaut.service';
 })
 export class Tab2Page {
 
-  selected: Observable<AstronautRecord>;
+  latitude: number;
+  longitude: number;
 
-  constructor(as: AstronautService) {
+  async getCurrentPosition() {
+    const coordinates = await Geolocation.getCurrentPosition();
+    this.latitude = coordinates.coords.latitude;
+    this.longitude = coordinates.coords.longitude;
   }
 
 }

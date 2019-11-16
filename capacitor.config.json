@@ -1,0 +1,8 @@
+{
+  "appId": "com.tour.IonicTour",
+  "appName": "IonicTour",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}
