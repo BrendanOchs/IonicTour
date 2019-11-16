@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Astronauts
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content overflow-scroll="false">
+    <ion-grid>
+        <ion-row>
+          <ion-col size-xs="12" size-sm="12" size-md="6" offset-md="3" size-lg="6" offset-lg="3">
+            <ion-virtual-scroll [items]="(astronauts | async)" approxItemHeight="320px">
+                <ion-card
+                  *virtualItem="let astro;"
+                  (click)="presentDetails(astro)"
+                  class="welcome-card">
+                  <img [src]="astro?.photo" alt="" />
+                  <ion-card-header>
+                    <ion-card-subtitle>{{astro?.militaryRank}} <span>{{astro?.status}}</span> </ion-card-subtitle>
+                    <ion-card-title>{{astro?.name}}</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <p>{{astro?.year}}</p>
+                  </ion-card-content>
+                </ion-card>
+            </ion-virtual-scroll>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+    <!-- <ion-virtual-scroll [items]="(astronauts | async)" approxItemHeight="320px">
+      <ion-card *virtualItem="let astro; let itemBounds = bounds;">
+        <div>
+          <ion-img [src]="astro.imgSrc" [height]="astro.imgHeight" [alt]="astro.name"></ion-img>
+        </div>
+      <ion-card-header>
+        <ion-card-title>{{ astro.name }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>{{ astro.content }}</ion-card-content>
+      </ion-card>
+    </ion-virtual-scroll> -->
+</ion-content>
+<!-- <ion-content>
+  <ion-list lines="none">
+      <ion-card *ngFor="let a of astronauts | async" class="welcome-card">
+        <img  alt="" />
+        <ion-card-header>
+          <ion-card-subtitle></ion-card-subtitle>
+          <ion-card-title></ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p></p>
+        </ion-card-content>
+      </ion-card>
+  </ion-list>
+</!-->

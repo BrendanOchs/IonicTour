@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{astronaut?.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item>
+      <ion-avatar slot="start">
+        <img [src]="astronaut?.photo">
+      </ion-avatar>
+      <ion-label><ion-text color="primary">{{astronaut?.status}}</ion-text></ion-label>
+    </ion-item>
+    <ion-card>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="5">
+            Birthplace:
+          </ion-col>
+          <ion-col size="7">
+            <ion-text color="primary">{{astronaut?.name}}</ion-text> was born in {{astronaut?.birthPlace}}
+            on {{astronaut?.birthdate | date: "medium"}}.
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="5">
+            Death:
+          </ion-col>
+          <ion-col size="7">
+            <div *ngIf="astronaut?.deathDate; else notDead">
+              <ion-text color="warn"></ion-text>
+              {{astronaut?.deathDate}} during {{astronaut?.deathMission}}
+            </div>
+            <ng-template #notDead>
+              N/A
+            </ng-template>
+          </ion-col>
+          <!-- {{astronaut.}} -->
+        </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              Military Rank:
+            </ion-col>
+            <ion-col size="7">
+              <ion-text *ngIf="astronaut?.militaryRank; else noRank">
+                {{astronaut?.militaryRank}}
+              </ion-text>
+              <ng-template #noRank>
+                N/A
+              </ng-template>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              Military Branch:
+            </ion-col>
+            <ion-col size="7">
+              <ion-text *ngIf="astronaut?.militaryBranch; else noBranch">
+                {{astronaut?.militaryBranch}}
+              </ion-text>
+              <ng-template #noBranch>
+                N/A
+              </ng-template>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    </ion-card>
+    <ion-card>
+      <table>
+        <thead>
+          <th>Astronaut</th>
+          <th>Flight Hours</th>
+          <th>Total</th>
+        </thead>
+        <tr *ngFor="let a of astronauts; odd as odd" [class.odd]="odd" [class.me]="convertedName == a.name">
+          <td class="name">{{a?.name}}</td>
+          <td>
+            <div 
+            class="bar"
+            [class.warn]="a.spaceFlightHours < 4000"
+            [class.amazing]="a.spaceFlightHours > 8000"
+            [style.width.%]="a.spaceFlightHours * hourScale"
+            >
+            </div>
+          </td>
+          <td [class.large]="(a.spaceFlightHours > 11500) && odd">{{a.spaceFlightHours}}</td>
+        </tr>
+      </table>
+    </ion-card>
+</ion-content>
