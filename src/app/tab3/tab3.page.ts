@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ThemeSwitcherService } from '../theme-switcher.service';
 import { Flashlight } from '@ionic-native/flashlight/ngx';
-import { stat } from 'fs';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -10,7 +10,7 @@ import { stat } from 'fs';
 })
 export class Tab3Page {
 
-  constructor(private ts: ThemeSwitcherService, private flash: Flashlight) {}
+  constructor(private ts: ThemeSwitcherService, private flash: Flashlight, private platform: Platform) {}
 
   changeTheme(theme: string, toggleValue: CustomEvent) {
     console.log('toggle value', toggleValue);
@@ -22,14 +22,24 @@ export class Tab3Page {
   }
 
   light(state: string) {
-    if (state === 'OFF') {
-      console.log('flash off');
-      this.flash.switchOff();
-      return;
-    }
-    console.log('flash on');
-    this.flash.switchOn();
-    console.log(this.flash.isSwitchedOn);
+    // if (state === 'OFF') {
+    //   console.log('flash off');
+    //   this.flash.switchOff();
+    //   return;
+    // }
+    // console.log('flash on');
+    // this.flash.switchOn();
+    this.platform.ready().then(() => {
+      this.flash.available().then(good => {
+        if (good) {
+          if (state === 'ON') {
+            this.flash.switchOn();
+          } else {
+            this.flash.switchOff();
+          }
+        }
+      });
+    });
   }
 
 }
